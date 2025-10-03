@@ -8,7 +8,7 @@ function RecentReports() {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await fetch('http://localhost:3001/reports?limit=10');
+        const response = await fetch('https://invoice-readiness.onrender.com/reports?limit=10');
         const data = await response.json();
         setReports(data);
       } catch (error) {

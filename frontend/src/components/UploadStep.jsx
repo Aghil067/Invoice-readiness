@@ -47,11 +47,11 @@ function UploadStep({ onAnalysisComplete }) {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const uploadResponse = await fetch('http://localhost:3001/upload', { method: 'POST', body: formData });
+      const uploadResponse = await fetch('https://invoice-readiness.onrender.com/upload', { method: 'POST', body: formData });
       if (!uploadResponse.ok) throw new Error('File upload failed.');
       const { uploadId } = await uploadResponse.json();
       const questionnaire = { webhooks: true, sandbox_env: true, retries: false };
-      const analyzeResponse = await fetch('http://localhost:3001/analyze', {
+      const analyzeResponse = await fetch('https://invoice-readiness.onrender.com/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ uploadId, questionnaire }),
